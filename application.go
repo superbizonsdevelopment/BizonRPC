@@ -11,5 +11,5 @@ type Application struct {
 }
 
 func New(applicationID string) Application {
-	return &Application{ID: applicationID, System: GetSystem(), TempPath: GetTempPath(), Connected: false}
+	return Application{ID: applicationID, System: GetSystem(), TempPath: GetTempPath(), Connected: false}
 }
