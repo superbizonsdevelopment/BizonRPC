@@ -1,6 +1,7 @@
 package bizonrpc
 
 import (
+	"encoding/json"
 	"net"
 	"os"
 	"strconv"
@@ -56,8 +57,8 @@ func (app *Application) SendData(cmd Command) {
 
 func (app *Application) Authorize() error {
 	cmd := &AuthorizationCommand{
-		Cmd: "AUTHORIZE",
-		Version: 1,
+		Cmd:           "AUTHORIZE",
+		Version:       1,
 		ApplicationID: 430157626546847759,
 	}
 
@@ -74,8 +75,8 @@ func (app *Application) SetRichPresence(activity *Activity) error {
 		Cmd: "SET_ACTIVITY",
 		Args: &RPCMsgArgs{
 			Activity: activity,
-			Pid: os.Getpid,
-		}
+			Pid:      os.Getpid,
+		},
 	}
 }
 
