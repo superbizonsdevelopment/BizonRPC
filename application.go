@@ -66,7 +66,7 @@ func (app *Application) Authorize() error {
 	if err != nil {
 		return err
 	}
-	_, err = app.Conn.Write([]byte(data))
+	_, err = app.Conn.Write(data)
 
 	if err != nil {
 		return err
@@ -88,7 +88,7 @@ func (app *Application) SetRichPresence(activity *Activity) error {
 		return err
 	}
 
-	_, err = app.Conn.Write([]byte(data))
+	_, err = app.Conn.Write(data)
 
 	if err != nil {
 		return err
