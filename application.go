@@ -41,7 +41,7 @@ func (app *Application) Connect() error {
 }
 
 func (app *Application) Write(data []byte) (int, error) {
-	tot, err := c.Conn.Write(data)
+	tot, err := app.Conn.Write(data)
 	if err != nil {
 		return tot, err
 	} else if tot <= 0 {
@@ -59,7 +59,7 @@ func (app *Application) Authorize() error {
 	cmd := &AuthorizationCommand{
 		Cmd:           "AUTHORIZE",
 		Version:       1,
-		ApplicationID: 430157626546847759,
+		ApplicationID: "430157626546847759",
 	}
 
 	data, err := json.Marshal(cmd)
@@ -67,7 +67,7 @@ func (app *Application) Authorize() error {
 		return err
 	}
 
-	return a.Connection.Write(string(data))
+	return app.Connection.Write(string(data))
 }
 
 func (app *Application) SetRichPresence(activity *Activity) error {
@@ -75,9 +75,16 @@ func (app *Application) SetRichPresence(activity *Activity) error {
 		Cmd: "SET_ACTIVITY",
 		Args: &RPCMsgArgs{
 			Activity: activity,
-			Pid:      os.Getpid,
+			Pid:      os.Getpid(),
 		},
 	}
+	data, err := json.Marshal(cmd)
+
+	if err != nil {
+		return err
+	}
+
+	return a.Connection.Write(string(data))
 }
 
 func (app *Application) IsConnect() {

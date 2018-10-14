@@ -1,5 +1,7 @@
 package bizonrpc
 
+import "errors"
+
 var (
-	NoDataError = "No Data"
+	NoDataError = errors.New("No Data")
 )
