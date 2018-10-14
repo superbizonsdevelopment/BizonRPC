@@ -5,16 +5,22 @@ import "net"
 type Application struct {
 	ID        string
 	System    string
+	TempPath  string
 	Conn      net.Conn
 	Connected bool
 }
 
 func New(applicationID string) Application {
-	return &Application{ID: applicationID, System: bizonrpc.GetSystem()}
+	return &Application{ID: applicationID, System: GetSystem(), TempPath: GetTempPath(), Connected: false}
 }
 
 func (app *Application) Connect() error {
-	conn, err := net.Dial()
+	conn, err := net.Dial(app.System, app.TempPath+"discord-rpc")
+
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func (app *Application) SetRichPresence() {
