@@ -66,8 +66,12 @@ func (app *Application) Authorize() error {
 	if err != nil {
 		return err
 	}
+	_, err := app.Conn.Write(string(data))
 
-	return app.Conn.Write(string(data))
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func (app *Application) SetRichPresence(activity *Activity) error {
