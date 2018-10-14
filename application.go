@@ -1,6 +1,9 @@
 package bizonrpc
 
-import "net"
+import (
+	"net"
+	"strconv"
+)
 
 type Application struct {
 	ID        string
@@ -20,15 +23,17 @@ func New(applicationID string) Application {
 }
 
 func (app *Application) Connect() error {
-	conn, err := net.Dial(app.System, app.TempPath+"discord-rpc")
+	for i := 0; i < 10; i++ {
+		conn, err := net.Dial(app.System, app.TempPath+"discord-rpc-"+strconv.Itoa(i))
 
-	if err != nil {
-		return err
+		if err == nil {
+			app.Conn = conn
+			app.Connected = true
+			return nil
+		}
 	}
 
-	app.Conn = conn
-
-	return nil
+	return err
 }
 
 func (app *Application) SetRichPresence() {
