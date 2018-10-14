@@ -7,7 +7,7 @@ import (
 
 func GetSystem() string {
 	if runtime.GOOS == "darwin" {
-		return "darwin"
+		return "unix"
 	}
 	if runtime.GOOS == "unix" {
 		return "unix"
