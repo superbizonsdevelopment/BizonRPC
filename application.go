@@ -15,7 +15,7 @@ type Application struct {
 	Connected bool
 }
 
-func New(applicationID string) Application {
+func New(applicationID string) *Application {
 	return Application{
 		ID:        applicationID,
 		System:    GetSystem(),
