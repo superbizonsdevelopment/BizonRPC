@@ -2,6 +2,7 @@ package bizonrpc
 
 import (
 	"net"
+	"os"
 	"strconv"
 )
 
@@ -38,8 +39,44 @@ func (app *Application) Connect() error {
 	return err
 }
 
-func (app *Application) SetRichPresence() {
+func (app *Application) Write(data []byte) (int, error) {
+	tot, err := c.Conn.Write(data)
+	if err != nil {
+		return tot, err
+	} else if tot <= 0 {
+		app.Conn.Close()
+		return tot, NoDataError
+	}
+	return tot, nil
+}
 
+func (app *Application) SendData(cmd Command) {
+
+}
+
+func (app *Application) Authorize() error {
+	cmd := &AuthorizationCommand{
+		Cmd: "AUTHORIZE",
+		Version: 1,
+		ApplicationID: 430157626546847759,
+	}
+
+	data, err := json.Marshal(cmd)
+	if err != nil {
+		return err
+	}
+
+	return a.Connection.Write(string(data))
+}
+
+func (app *Application) SetRichPresence(activity *Activity) error {
+	cmd := &SetRPCCommand{
+		Cmd: "SET_ACTIVITY",
+		Args: &RPCMsgArgs{
+			Activity: activity,
+			Pid: os.Getpid,
+		}
+	}
 }
 
 func (app *Application) IsConnect() {
