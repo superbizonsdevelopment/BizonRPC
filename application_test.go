@@ -20,7 +20,12 @@ func TestApplication(t *testing.T) {
 		return
 	}
 
-	duration := time.ParseDuration("1m30s")
+	duration, err := time.ParseDuration("1m30s")
+
+	if err != nil {
+		log.Println("Error: ", err.Error())
+		return
+	}
 
 	time.Sleep(duration)
 
