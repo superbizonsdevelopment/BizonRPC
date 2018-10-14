@@ -23,6 +23,8 @@ func New(applicationID string) Application {
 }
 
 func (app *Application) Connect() error {
+	var err error
+
 	for i := 0; i < 10; i++ {
 		conn, err := net.Dial(app.System, app.TempPath+"discord-rpc-"+strconv.Itoa(i))
 
