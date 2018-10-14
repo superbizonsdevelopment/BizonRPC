@@ -12,11 +12,11 @@ type Application struct {
 
 func New(applicationID string) Application {
 	return Application{
-    ID: applicationID,
-    System: GetSystem(),
-    TempPath: GetTempPath(),
-    Connected: false
-  }
+		ID:        applicationID,
+		System:    GetSystem(),
+		TempPath:  GetTempPath(),
+		Connected: false,
+	}
 }
 
 func (app *Application) Connect() error {
