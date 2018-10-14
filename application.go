@@ -14,6 +14,7 @@ func New(applicationID string) Application {
 	return &Application{ID: applicationID, System: GetSystem(), TempPath: GetTempPath(), Connected: false}
 }
 
+/*
 func (app *Application) Connect() error {
 	conn, err := net.Dial(app.System, app.TempPath+"discord-rpc")
 
@@ -34,3 +35,4 @@ func (app *Application) IsConnect() {
 func (app *Application) Disconnect() {
 
 }
+*/
