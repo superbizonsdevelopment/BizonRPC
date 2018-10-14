@@ -25,6 +25,9 @@ func (app *Application) Connect() error {
 	if err != nil {
 		return err
 	}
+
+	app.Conn = conn
+
 	return nil
 }
 
