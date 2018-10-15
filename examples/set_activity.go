@@ -17,8 +17,13 @@ func main() {
 	}
 
 	str, err := win.Connection.Read()
-	fmt.Println("ERR", err)
-	fmt.Println("STR", str)
+
+	if err != nil {
+		fmt.Println("Error: ", err.Error())
+		return
+	}
+
+	fmt.Println("STR:", str)
 
 	time.Sleep(5 * time.Second)
 
@@ -34,13 +39,17 @@ func main() {
 
 		err := win.SetRichPresence(activity)
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println("Error: ", err.Error())
 			continue
 		}
 
 		str, err := win.Connection.Read()
 
-		fmt.Println(err)
+		if err != nil {
+			fmt.Println("Error: ", err.Error())
+			return
+		}
+
 		fmt.Println("STR1", str)
 
 		fmt.Println("---\nDone?")
