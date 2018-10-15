@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	rpc "github.com/gitarzysta/discordrpc-go"
+	rpc "github.com/superbizonsdevelopment/bizonrpc"
 )
 
 func TestMeme(t *testing.T) {
