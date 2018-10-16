@@ -14,7 +14,7 @@ type CommandEventMessage struct {
 	Event string `json:"evt"`
 }
 
-CommandGetMessage struct {
+type CommandGetMessage struct {
 	CommandMessage
 	Args string `json:"args"`
 }
