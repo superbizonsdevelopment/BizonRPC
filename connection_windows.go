@@ -1,9 +1,10 @@
 package discordrpc
 
 import (
-	"gopkg.in/natefinch/npipe.v2"
 	"strconv"
 	"time"
+
+	npipe "gopkg.in/natefinch/npipe.v2"
 )
 
 type Connection struct {
