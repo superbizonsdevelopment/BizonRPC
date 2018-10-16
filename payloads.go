@@ -1,4 +1,4 @@
-package discordrpc
+package bizonrpc
 
 type HandshakeMessage struct {
 	Version       int    `json:"v"`
@@ -12,6 +12,12 @@ type CommandMessage struct {
 type CommandEventMessage struct {
 	CommandMessage
 	Event string `json:"evt"`
+}
+
+type CommandAuthenticateMessage struct {
+	Nonce
+	CommandMessage
+	Args *AuthenticateArgs `json:"args"`
 }
 
 type CommandGetMessage struct {

@@ -1,4 +1,4 @@
-package discordrpc_test
+package bizonrpc_test
 
 import (
 	"fmt"

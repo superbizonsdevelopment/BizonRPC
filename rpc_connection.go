@@ -1,4 +1,4 @@
-package discordrpc
+package bizonrpc
 
 import (
 	"bytes"

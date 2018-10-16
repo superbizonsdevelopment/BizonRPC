@@ -1,4 +1,4 @@
-package discordrpc
+package bizonrpc
 
 import (
 	"encoding/json"
@@ -80,6 +80,10 @@ type Secrets struct {
 	Match    string `json:"match,omitempty"`
 	Join     string `json:"join,omitempty"`
 	Spectate string `json:"spectate,omitempty"`
+}
+
+type AuthenticateArgs struct {
+	Token string `json:"access_token"`
 }
 
 type Nonce struct {
