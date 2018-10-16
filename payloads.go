@@ -15,6 +15,7 @@ type CommandEventMessage struct {
 }
 
 type CommandGetMessage struct {
+	Nonce
 	CommandMessage
 	Args string `json:"args"`
 }
