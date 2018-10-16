@@ -68,7 +68,7 @@ func (a *API) GetGuilds() error {
 
 	command.SetNonce()
 
-	data, err := json.Marshall(command)
+	data, err := json.Marshal(command)
 
 	if err != nil {
 		return err
