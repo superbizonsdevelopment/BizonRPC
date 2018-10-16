@@ -60,6 +60,24 @@ func (a *API) SetRichPresence(activity *Activity) error {
 	return a.Connection.Write(string(data))
 }
 
+func (a *API) Authenticate(token string) error {
+	command := &CommandMessage{
+		Args: {
+			token,
+		},
+		CommandMessage: CommandMessage{"AUTHENTICATE"},
+	}
+
+	command.SetNonce()
+
+	data, err := json.Marshal(command)
+	if err != nil {
+		return err
+	}
+
+	return a.Connection.Write(string(data))
+}
+
 func (a *API) GetGuilds() error {
 	command := &CommandGetMessage{
 		CommandMessage: CommandMessage{Command: "GET_GUILDS"},
