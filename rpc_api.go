@@ -59,3 +59,19 @@ func (a *API) SetRichPresence(activity *Activity) error {
 
 	return a.Connection.Write(string(data))
 }
+
+func (a *API) GetGuilds() error {
+	command := &CommandRichPresenceMessage{
+		CommandMessage: CommandMessage{"GET_GUILDS"},
+		Args:           "{}",
+	}
+
+	command.SetNonce()
+
+	data, err := json.Marshall(command)
+
+	if err != nil {
+		return err
+	}
+	return a.Connection.Write(string(data))
+}

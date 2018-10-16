@@ -14,6 +14,11 @@ type CommandEventMessage struct {
 	Event string `json:"evt"`
 }
 
+CommandGetMessage struct {
+	CommandMessage
+	Args string `json:"args"`
+}
+
 type CommandRichPresenceMessage struct {
 	Nonce
 	CommandMessage
