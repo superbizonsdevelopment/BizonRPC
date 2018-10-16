@@ -1,14 +1,34 @@
 package main
 
 import (
+	"flag"
 	"fmt"
+	"os"
 	"time"
 
 	rpc "github.com/superbizonsdevelopment/bizonrpc"
 )
 
+var (
+	client_id string
+	details   string
+	state     string
+)
+
+func init() {
+	flag.StringVar(&client_id, "i", "", "RPC ID.")
+	flag.StringVar(&details, "d", "", "Details for RPC.")
+	flag.StringVar(&state, "s", "", "State for RPC.")
+	flag.Parse()
+
+	if client_id == "" {
+		flag.Usage()
+		os.Exit(1)
+	}
+}
+
 func main() {
-	win, err := rpc.New("ID")
+	win, err := rpc.New(client_id)
 	win.Open()
 	fmt.Println(win.Connection.IsOpen())
 
@@ -29,8 +49,8 @@ func main() {
 
 	for {
 		activity := &rpc.Activity{
-			Details: "Example Details",
-			State:   "Go is the best programming language!",
+			Details: details,
+			State:   state,
 			TimeStamps: &rpc.TimeStamps{
 				StartTimestamp: time.Now().Unix(),
 				EndTimestamp:   time.Now().Add(20 * time.Second).Unix(),
