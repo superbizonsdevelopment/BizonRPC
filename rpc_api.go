@@ -61,8 +61,8 @@ func (a *API) SetRichPresence(activity *Activity) error {
 }
 
 func (a *API) GetGuilds() error {
-	command := &CommandRichPresenceMessage{
-		CommandMessage: CommandMessage{"GET_GUILDS"},
+	command := &CommandGetMessage{
+		CommandMessage: "GET_GUILDS",
 		Args:           "{}",
 	}
 
