@@ -62,7 +62,9 @@ func (a *API) SetRichPresence(activity *Activity) error {
 
 func (a *API) Authenticate(token string) error {
 	command := &CommandGetMessage{
-		Args: {token,}
+		Args: {
+			token
+		},
 		CommandMessage: CommandMessage{"AUTHENTICATE"},
 	}
 
